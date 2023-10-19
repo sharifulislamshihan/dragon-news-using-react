@@ -2,9 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 import userDefaultPicture from '../../../assets/user.png'
 const Navbar = () => {
     const NavLinks = <>
-        <NavLink to="/"><li><a>Home</a></li></NavLink>
-        <NavLink to="/about"><li><a>About</a></li></NavLink>
-        <NavLink to="/career"><li><a>Career</a></li></NavLink>
+        <NavLink to="/"><li className="text-lg"><a>Home</a></li></NavLink>
+        <NavLink to="/about"><li className="text-lg"><a>About</a></li></NavLink>
+        <NavLink to="/career"><li className="text-lg"><a>Career</a></li></NavLink>
 
     </>
     return (

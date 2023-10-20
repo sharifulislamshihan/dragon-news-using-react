@@ -1,17 +1,35 @@
+import { useContext } from "react";
 import Navbar from "../Shared/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext)
 
     const handleRegister = e => {
-        e.prevent.default();
-        const name = e.target.name.value;
-        const photo = e.target.photo.value;
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+        e.preventDefault();
+        const form = new FormData(e.currentTarget);
+
+
+        const name = form.get('name');
+        const photo = form.get('photo');
+        const email = form.get('email');
+        const password = form.get('password');
+        console.log(name, photo, email, password);
+
+
+        
+        createUser(email, password)
+        .then(result =>{
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.error(error);
+        })
+    
     }
 
-
+    
     return (
         <div>
             <div className="mb-7">
@@ -43,11 +61,11 @@ const Register = () => {
                             <span className="label-text font-semibold">Password</span>
                         </label>
                         <input type="password" name="password" placeholder="password" className="input input-bordered" required />
-                        <div className="mt-3">
-                            <label className="label">
-                                <input type="checkbox" name="" id="" /> <p className="ml-3">Accept terms and conditions</p>
-                            </label>
-                        </div>
+
+                        <label className="label mt-3">
+                            <input type="checkbox" name="" id="" /> <p className="ml-3">Accept terms and conditions</p>
+                        </label>
+
                     </div>
                     <div className="form-control mt-1">
                         <button className="btn btn-primary w-full">Register</button>
